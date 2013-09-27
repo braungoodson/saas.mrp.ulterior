@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" ng-app="spiderWeb">
+	<head>
+	    <meta charset="utf-8">
+	    <title>Spider</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="Spider, Spider Ware, Spider Web, SaaS, PaaS">
+	    <meta name="author" content="braungoodson@gmail.com">
+	    <!-- Le styles -->
+	    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <style>body{padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */}</style>
+	    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	    <script src="../bootstrap/js/html5shiv.js"></script>
+	    <![endif]-->
+	    <!-- Fav and touch icons -->
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+	    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+	    <link rel="shortcut icon" href="favicon.png">
+        <style>
+						@-webkit-keyframes gnatIn {
+							from {
+								-webkit-transform: skew(25deg,25deg);
+								left:-5px;
+								opacity:0;
+							}
+							to {
+								-webkit-transform: skew(0deg,0deg);
+								left:0px;
+								opacity:1
+							}
+						}
+						@-webkit-keyframes mothInLeftUp {
+							from {
+								-webkit-transform: translate(15px,15px);
+								left:-5px;
+								opacity:0;
+							}
+							to {
+								-webkit-transform: translate(0px,0px);
+								left:0px;
+								opacity:1
+							}
+						}
+						@-webkit-keyframes straightInFromLeft {
+							from {
+								left:-100px;
+								opacity:0;
+							}
+							to {
+								left:0px;
+								opacity:1
+							}
+						}
+						.gnatIn { 
+							-webkit-animation: gnatIn .3s;
+						}
+						.mothInLeftUp { 
+							-webkit-animation: mothInLeftUp .3s;
+						}
+						.straightInFromLeft { 
+							-webkit-animation: straightInFromLeft .3s;
+						}
+				</style>
+	</head>
+	<body data-ng-controller="rootController">
+	    <div class="navbar navbar-inverse navbar-fixed-top straightInFromLeft">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <a class="brand" href="#"><span class="label label-info" style="font-size:18px;">Spider</span></a>
+	          <div class="nav-collapse collapse">
+	            <ul class="nav">
+	              <li><a href="#/index">Home</a></li>
+	              <li><a href="#/login">Login</a></li>
+	              <li><a href="#/register">Register</a></li>
+	            </ul>
+	          </div><!--/.nav-collapse -->
+              <div style="float:right;margin-top:8px;"><span class="label label-danger" style="font-size:10px;" id="hitCounter" data-ng-show="showCounter" data-ng-animate="{show:'gnatIn'}">{{hitCounter}}</span></div>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div data-ng-view=""></div>
+
+	    <script src="http://codeorigin.jquery.com/jquery-2.0.3.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+      <!-- Express.io -->
+      <script src="socket.io/socket.io.js"></script>
+	    <!-- Spider Web -->
+	    <script src="../spiderWeb.js"></script>
+	</body>
+</html>
