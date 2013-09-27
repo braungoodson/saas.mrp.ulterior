@@ -63,8 +63,6 @@ ulteriorWeb.animation('gnat-in', function($rootScope) {
                         element.removeClass('gnatIn-active');
                         element.removeClass('gnatIn');
                         element.addClass('gnatIn');
-                        console.log('element');
-                        console.log(element);
                 }
         };
 });

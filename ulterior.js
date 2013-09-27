@@ -1,3 +1,37 @@
+/* 
+
+___________       __  .__  __  .__               
+\_   _____/ _____/  |_|__|/  |_|__| ____   ______
+ |    __)_ /    \   __\  \   __\  |/ __ \ /  ___/
+ |        \   |  \  | |  ||  | |  \  ___/ \___ \ 
+/_______  /___|  /__| |__||__| |__|\___  >____  >
+        \/     \/                      \/     \/ 
+
+Entity Classes: These will eventually me made avilable to both the client and the server. 
+
+*/
+//
+function Vendor(vid,vname,vemail) {
+	this.vid = vid;
+	this.vname = vname;
+	this.vemail = vemail;
+}
+//
+function Material(mid,mname,mdescription,mcount,munit,vid) {
+	this.mid = mid;
+	this.mname = mname;
+	this.mdescription = mdescription;
+	this.mcount = mcount;
+	this.munit = munit;
+	this.vid = vid;
+}
+//
+function Part(pid,pname,pmaterials,pcount) {
+	this.pid = pid;
+	this.pname = pname;
+	this.pmaterials = pmaterials;
+	this.pcount = pcount;
+}
 /*
 
         .__        ___.          .__   
@@ -16,13 +50,32 @@ var fs = require('fs');
 var color = require('cli-color');
 // Mock Database
 var registry = {registrants:[
-	{name:'braungoodson@ulterior.web',password:'braungoodson',token:null}
+	{name:'ulterior@mrp.saas',password:'ulterior',token:null},
+	{name:'a',password:'a',token:null}
 ]};
 var data = {
     statistics: {
         hits:0
     }
 };
+var database = {
+	vendors: [],
+	materials: [],
+	parts: [],
+	assemblies: [],
+	packages: [],
+	boxes: []
+}
+//
+database.vendors.push(new Vendor(0,'LEDs R Us','sales@ledsrus.phony'));
+database.vendors.push(new Vendor(1,'Super Solder','sales@supersolder.phony'));
+database.materials.push(new Material(0,'red leds','semi-conductor light source',3454,'leds',database.vendors[0].vid));
+database.materials.push(new Material(1,'green leds','semi-conductor light source',2741,'leds',database.vendors[0].vid));
+database.materials.push(new Material(2,'solder','fusible metal alloy',2741,'leds',database.vendors[1].vid));
+database.parts.push(new Part(0,'RG LED Array',[database.materials[0].mid,database.materials[1].mid,database.materials[2].mid],34));
+/*
+	Server-side classes
+*/
 //
 function Route(filePath) {
 	this.relativeFilePath = filePath;
@@ -34,7 +87,6 @@ function Route(filePath) {
 	this.contentType = 'text/'+type;
 }
 Route.prototype.log = function () {
-
 	console.log(color.magenta('ulterior')+':'+color.green(this.relativeFilePath)+':'+this.route+':'+this.contentType);
 	return this;
 }
