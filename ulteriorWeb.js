@@ -27,6 +27,10 @@ ulteriorWeb.config(function($routeProvider){
             controller: 'loggedinController',
             templateUrl: 'views/loggedinTemplate.html'
         })
+        .when('/materials',{
+            controller: 'materialsController',
+            templateUrl: 'views/materialsTemplate.html'
+        })
         .otherwise({redirectTo:'/index'})
 });
 //
@@ -68,7 +72,7 @@ ulteriorWeb.animation('gnat-in', function($rootScope) {
 });
 //
 ulteriorWeb.controller('rootController',function($rootScope,$scope,socket){
-        $scope.hitCounter = 0;
+    $scope.hitCounter = 0;
     socket.on('echo',function(d){
         console.log(d);
     });
@@ -88,6 +92,14 @@ ulteriorWeb.controller('rootController',function($rootScope,$scope,socket){
     socket.emit('echo','echo');
     socket.emit('broadcast');
     socket.emit('hit:create');
+});
+//
+ulteriorWeb.controller('materialsController',function($scope,socket){
+    $scope.materials = [];
+    socket.on('materials:update',function(d){
+        $scope.materials = d.materials;
+    });
+    socket.emit('materials:read');
 });
 //
 ulteriorWeb.controller('indexController',function($scope,socket){

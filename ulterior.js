@@ -111,6 +111,7 @@ _______   ____   _______/  |_
  */
 //
 var routes = [
+	new Route('./views/materialsTemplate.html').log(),
 	new Route('./views/indexTemplate.html').log(),
 	new Route('./views/echoTemplate.html').log(),
 	new Route('./views/registerTemplate.html').log(),
@@ -171,7 +172,10 @@ console.log(color.magenta('ulterior')+':'+color.green('routesdefined'));
      \/           \/     \/    \/      
 
 */
-
+server.io.route('materials:read',function(q){
+	console.log(color.magenta('ulterior')+':'+color.blue('materials:read'));
+	q.io.emit('materials:update',{materials:database.materials});
+});
 //
 server.io.route('echo',function(q){
     console.log(color.magenta('ulterior')+':'+color.yellowBright('echo'));
