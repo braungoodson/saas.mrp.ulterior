@@ -100,6 +100,10 @@ ulteriorWeb.controller('materialsController',function($scope,socket){
         $scope.materials = d.materials;
     });
     socket.emit('materials:read');
+    $scope.create = function (mid,mname,mdescription,mcount,munit) {
+        console.log('materials:create:',{material:{mid:mid,mname:mname,mdescription:mdescription,mcount:mcount,munit:munit}});
+        socket.emit('materials:create',{material:{mid:mid,mname:mname,mdescription:mdescription,mcount:mcount,munit:munit}});
+    }
 });
 //
 ulteriorWeb.controller('indexController',function($scope,socket){

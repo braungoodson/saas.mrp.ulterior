@@ -1,0 +1,49 @@
+<div class="container mothInLeftUp" data-ng-controller="materialsController">
+  <h2 style="display:inline;">Materials</h1>
+    <form class="form-search" style="display:inline;margin-left: 10px;position: relative;top: -5px;">
+      <input type="text" class="input-medium search-query" placeholder="Material Name" data-ng-model="filter.material.name"/>
+      <button type="submit" class="btn" style="margin-left:10px;">Filter</button>
+    </form>
+  <br/><br />
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <td><b>Id</b></td>
+        <td><b>Name</b></td>
+        <td><b>Description</b></td>
+        <td><b>Stock</b></td>
+      </tr>
+    <tr data-ng-repeat="m in materials | filter:filter.material.name">
+      <td>{{m.mid}}</td>
+      <td>{{m.mname}}</td>
+      <td>{{m.mdescription}}</td>
+      <td>{{m.mcount}} {{m.munit}}</td>
+    </tr>
+  </table>
+
+
+
+  <h2>CRUD</h1>
+
+
+
+  <form class="form-inline">
+    <input type="text" class="input-small" placeholder="Id" data-ng-model="material.create.mid">
+    <input type="text" class="input-small" placeholder="Name" data-ng-model="material.create.mname">
+    <input type="text" class="input-small" placeholder="Description" data-ng-model="material.create.mdescription">
+    <input type="text" class="input-small" placeholder="Count" data-ng-model="material.create.mcount">
+    <input type="text" class="input-small" placeholder="Unit" data-ng-model="material.create.munit">
+    <select>
+      <option>Default Vendor</option>
+    </select>
+    <button type="submit" class="btn" data-ng-click="create(material.create.mid,material.create.mname,material.create.mdescription,material.create.mcount,material.create.mcount)">Create</button>
+  </form>
+
+
+</div>
+
+
+
+
+
+

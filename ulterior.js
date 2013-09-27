@@ -172,13 +172,19 @@ console.log(color.magenta('ulterior')+':'+color.green('routesdefined'));
      \/           \/     \/    \/      
 
 */
+server.io.route('materials:create',function(q){
+	console.log(color.magenta('ulterior')+':'+color.green('materials:create')+':'+JSON.stringify(q.data.material));
+	var m = q.data.material;
+	database.materials.push(new Material(m.mid,m.mname,m.mdescription,m.mcount,m.munit,database.vendors[0].vid));
+	server.io.broadcast('materials:update',{materials:database.materials});
+});
 server.io.route('materials:read',function(q){
 	console.log(color.magenta('ulterior')+':'+color.blue('materials:read'));
 	q.io.emit('materials:update',{materials:database.materials});
 });
 //
 server.io.route('echo',function(q){
-    console.log(color.magenta('ulterior')+':'+color.yellowBright('echo'));
+  console.log(color.magenta('ulterior')+':'+color.yellowBright('echo'));
 	q.io.emit('echo','echo');
 });
 server.io.route('broadcast',function(q){
